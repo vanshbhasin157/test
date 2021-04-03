@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_skills_test/bloc/car_bloc/car_bloc.dart';
 import 'package:flutter_skills_test/screens/vehicles.dart';
+import 'package:flutter_skills_test/services/api.dart';
 import 'package:flutter_skills_test/utils/utils.dart';
 
 void main() {
@@ -17,7 +20,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: <String, WidgetBuilder>{Vehicles.tag: (BuildContext context) => Vehicles()},
-      home: MyHomePage(title: 'Flutter Skills Set'),
+      home: BlocProvider(create: (context) => CarBloc(vehicleGET: CarService()),
+      
+      child: Vehicles())
     );
   }
 }
